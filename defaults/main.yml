@@ -1,0 +1,6 @@
+---
+# defaults file for ansible-role-swift
+swift_tmp_directory: /tmp
+swift_install_directory: ~/local
+swift_package_url: "https://swift.org/builds/ubuntu1404/swift-2.2-SNAPSHOT-2015-12-01-b/swift-2.2-SNAPSHOT-2015-12-01-b-ubuntu14.04.tar.gz"
+package_signature_url: "https://swift.org/builds/ubuntu1404/swift-2.2-SNAPSHOT-2015-12-01-b/swift-2.2-SNAPSHOT-2015-12-01-b-ubuntu14.04.tar.gz.sig"
