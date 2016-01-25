@@ -46,7 +46,8 @@
   changed_when: false
   when: swift_installed.rc == 1
 
-- file: path={{swift_install_directory}} state=directory mode=0755
+- name: Create swift install directory
+  file: path={{swift_install_directory}} state=directory mode=0755
   when: swift_installed.rc == 1
 
 - name: Extract the archive
