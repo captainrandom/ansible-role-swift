@@ -49,7 +49,11 @@
 - file: path={{swift_install_directory}} state=directory mode=0755
 
 - name: Extract the archive
-  unarchive: src={{swift_tmp_directory}}/swift.tar.gz dest={{swift_install_directory}} copy=no
+  unarchive:
+    src={{swift_tmp_directory}}/swift.tar.gz
+    dest={{swift_install_directory}}
+    copy=no
+    creates={{swift_install_directory}}/swift-2.2-SNAPSHOT-2015-12-01-b-ubuntu14.04
   register: extraction_step
 
 - name: Modify PATH environment variable
