@@ -53,6 +53,5 @@
   register: extraction_step
 
 - name: Modify PATH environment variable
-  lineinfile: state=present line="export PATH={{swift_install_directory}}/swift-2.2-SNAPSHOT-2015-12-01-b-ubuntu14.04/usr/bin:'${PATH}'" dest=~/.bashrc
-
+  lineinfile: state=present line="export PATH={{swift_install_directory}}/swift-2.2-SNAPSHOT-2015-12-01-b-ubuntu14.04/usr/bin:$PATH" dest=~/.bashrc
 
