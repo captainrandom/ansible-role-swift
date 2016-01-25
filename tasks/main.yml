@@ -62,5 +62,5 @@
 - name: Remove downloaded key
   file: path={{swift_tmp_directory}}/{{downloaded_pgp_key}} state=absent
 
-- name: Remove the other key
+- name: Remove the signature
   file: path={{swift_tmp_directory}}/swift.tar.gz.sig state=absent
