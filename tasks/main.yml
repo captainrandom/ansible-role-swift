@@ -20,7 +20,7 @@
   when: swift_installed.rc == 1
 
 - name: Add PGP key to keyring
-  command: gpg --import {{swift_tmp_directory}}/all-keys.asc
+  command: gpg --import {{swift_tmp_directory}}/{{downloaded_pgp_key}}
   register: add_key
   changed_when: "'not changed' not in add_key.stderr"
   when: swift_installed.rc == 1
@@ -35,11 +35,11 @@
   when: swift_installed.rc == 1
 
 - name: Download signature
-  get_url: url={{package_signature_url}} dest={{swift_tmp_directory}}/swift.tar.gz.sig
+  get_url: url={{package_signature_url}} dest={{swift_tmp_directory}}/{{signature_file_name}}
   when: swift_installed.rc == 1
 
 - name: Verify signature
-  command:  gpg --verify {{swift_tmp_directory}}/swift.tar.gz.sig
+  command:  gpg --verify {{swift_tmp_directory}}/{{signature_file_name}}
   register: verified_sig
   #Fails if gpg fails to verify and reports “BAD signature”
   failed_when: "'BAD' in verified_sig.stderr"
@@ -59,3 +59,8 @@
 - name: Modify PATH environment variable
   lineinfile: state=present line="export PATH={{swift_install_directory}}/swift-2.2-SNAPSHOT-2015-12-01-b-ubuntu14.04/usr/bin:$PATH" dest=~/.bashrc
 
+- name: Remove downloaded key
+  file: path={{swift_tmp_directory}}/{{downloaded_pgp_key}} state=absent
+
+- name: Remove the other key
+  file: path={{swift_tmp_directory}}/swift.tar.gz.sig state=absent
