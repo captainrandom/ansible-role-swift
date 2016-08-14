@@ -1,0 +1,10 @@
+---
+
+- name: Install apt dependencies
+  apt: name={{item}} state=installed update_cache=yes
+  with_items:
+    - clang
+    - libicu-dev
+    - wget
+  become: yes
+  become_method: sudo

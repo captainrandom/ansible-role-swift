@@ -1,15 +1,9 @@
 ---
 # tasks file for ansible-role-swift
-- name: Install apt dependencies
-  apt: pkg={{item}} state=installed update_cache=yes
-  with_items:
-    - clang
-    - libicu-dev
-    - wget
-  become: yes
-  become_method: sudo
+- name: Install dependencies
+  include: "os_family/{{ ansible_os_family }}.yml"
 
-- name: Chek if swift is installed
+- name: Check if swift is installed
   command: "which swift"
   changed_when: false
   failed_when: false
