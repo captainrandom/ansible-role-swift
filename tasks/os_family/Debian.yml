@@ -1,7 +1,9 @@
 ---
 
 - name: Install apt dependencies
-  apt: name={{apt_packages}} state=installed update_cache=yes
-  state: latest
+  apt:
+    name: "{{apt_packages}}"
+    update_cache: yes
+    state: latest
   become: yes
   become_method: sudo
